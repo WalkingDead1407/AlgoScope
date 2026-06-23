@@ -43,4 +43,7 @@ typedef struct {
 
 typedef void (*PathCallback)(const PathFrame *frame, void *user_data);
 
+void bubble_sort(int *array, size_t size, SortCallback cb, void *user_data);
+void merge_sort(int *array, size_t size, SortCallback cb, void *user_data);
+
 #endif /* ALGO_INTERFACE_H */
