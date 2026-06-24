@@ -20,3 +20,7 @@ libdijkstra.so: dijkstra.c
 
 clean:
 	rm -f *.so *.o
+
+test_sort: test_sort.c bubble_sort.c merge_sort.c
+	$(CC) $(CFLAGS) -o test_sort test_sort.c bubble_sort.c merge_sort.c
+	./test_sort
