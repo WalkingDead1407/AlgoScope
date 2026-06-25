@@ -29,3 +29,5 @@ Thumbs.db
 
 # Logs
 *.log
+c/test_sort
+c/test_path
