@@ -2,7 +2,7 @@
 #define ALGO_INTERFACE_H
 
 #include <stdint.h>
-#include <stddef.h>
+#include <stdlib.h>
 
 /* Sorting */
 
