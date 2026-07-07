@@ -70,3 +70,6 @@ async def websocket_endpoint(ws: WebSocket):
         pass
     except Exception as e:
         await ws.send_text(json.dumps({"error": str(e)}))
+
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
