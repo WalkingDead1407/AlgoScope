@@ -7,16 +7,16 @@ TARGETS = libbubble.so libmerge.so libastar.so libdijkstra.so
 all: $(TARGETS)
 
 libbubble.so: bubble_sort.c
-	$(CC) $(CFLAGS) $(SHARED) -o $@ $
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
 
 libmerge.so: merge_sort.c
-	$(CC) $(CFLAGS) $(SHARED) -o $@ $
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
 
-libastar.so: astar.c
-	$(CC) $(CFLAGS) $(SHARED) -o $@ $
+libastar.so: astar.c heap.c
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $^
 
-libdijkstra.so: dijkstra.c
-	$(CC) $(CFLAGS) $(SHARED) -o $@ $
+libdijkstra.so: dijkstra.c heap.c
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $^
 
 clean:
 	rm -f *.so *.o

@@ -11,7 +11,7 @@ dependencies = [
 
 [project.scripts]
 algoscope = "server:main"
-build-c = "build:build"
+build-c = "build:main"
 
 [dependency-groups]
 dev = [
