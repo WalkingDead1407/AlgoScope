@@ -5,12 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from bridge import run_sort, run_path
 
 app = FastAPI()
-from fastapi.staticfiles import StaticFiles
-from pathlib import Path
-
-FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
-app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
-
 # allow the frontend to connect from file:// or localhost
 app.add_middleware(
     CORSMiddleware,
@@ -76,3 +70,6 @@ async def websocket_endpoint(ws: WebSocket):
         pass
     except Exception as e:
         await ws.send_text(json.dumps({"error": str(e)}))
+
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
