@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  const WS_URL = "ws://localhost:8000/ws";
-
+  const WS_PROTOCOL = window.location.protocol === "https:" ? "wss:" : "ws:";
+  const WS_URL = `${WS_PROTOCOL}//${window.location.host}/ws`;
   const ALGOS = {
     sort: ["bubble", "merge"],
     path: ["dijkstra", "astar"],
