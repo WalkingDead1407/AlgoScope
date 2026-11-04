@@ -9,6 +9,8 @@ C_DIR = Path(__file__).parent.parent / "c"
 #load shared libraries
 libbubble= ctypes.CDLL(str(C_DIR / "libbubble.so"))
 libmerge= ctypes.CDLL(str(C_DIR / "libmerge.so"))
+libquick= ctypes.CDLL(str(C_DIR / "libquick.so"))
+libinsertion= ctypes.CDLL(str(C_DIR / "libinsertion.so"))
 libastar= ctypes.CDLL(str(C_DIR / "libastar.so"))
 libdijkstra= ctypes.CDLL(str(C_DIR / "libdijkstra.so"))
 
@@ -46,7 +48,11 @@ PathCallbackType = ctypes.CFUNCTYPE(None, ctypes.POINTER(PathFrame), ctypes.c_vo
 libbubble.bubble_sort.argtypes= [ctypes.POINTER(ctypes.c_int), ctypes.c_size_t, SortCallbackType, ctypes.c_void_p]
 libbubble.bubble_sort.restype= None
 libmerge.merge_sort.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_size_t,SortCallbackType, ctypes.c_void_p]
-libmerge.merge_sort.restype =None 
+libmerge.merge_sort.restype =None
+libquick.quick_sort.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_size_t, SortCallbackType, ctypes.c_void_p]
+libquick.quick_sort.restype = None
+libinsertion.insertion_sort.argtypes = [ctypes.POINTER(ctypes.c_int), ctypes.c_size_t, SortCallbackType, ctypes.c_void_p]
+libinsertion.insertion_sort.restype = None 
 libastar.a_star.argtypes= [ctypes.POINTER(ctypes.c_int), ctypes.c_int,ctypes.c_int, ctypes.c_int, ctypes.c_int,PathCallbackType, ctypes.c_void_p]
 libastar.a_star.restype=None 
 libdijkstra.dijkstra.argtypes= [ctypes.POINTER(ctypes.c_int), ctypes.c_int,ctypes.c_int, ctypes.c_int, ctypes.c_int,PathCallbackType, ctypes.c_void_p]
@@ -79,6 +85,10 @@ def run_sort(algo: str, array: list[int]) -> list[dict]:
         libbubble.bubble_sort(c_array, ctypes.c_size_t(size), cb, None)
     elif algo == "merge":
         libmerge.merge_sort(c_array, ctypes.c_size_t(size), cb, None)
+    elif algo == "quick":
+        libquick.quick_sort(c_array, ctypes.c_size_t(size), cb, None)
+    elif algo == "insertion":
+        libinsertion.insertion_sort(c_array, ctypes.c_size_t(size), cb, None)
     else:
         raise ValueError(f"unknown sort algo: {algo}")
 

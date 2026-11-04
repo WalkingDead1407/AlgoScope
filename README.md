@@ -2,7 +2,7 @@
 
 A real-time algorithm visualization tool where C implementations of sorting and pathfinding algorithms stream their step-by-step state to a Python FastAPI backend, which pushes live updates to an animated browser frontend via WebSockets.
 
-Watch bubble sort, merge sort, A*, and Dijkstra race side-by-side — with play, pause, and speed controls.
+Watch bubble sort, merge sort, quick sort, insertion sort, A*, and Dijkstra race side-by-side — with play, pause, and speed controls.
 
 # Features
 
@@ -11,13 +11,13 @@ Watch bubble sort, merge sort, A*, and Dijkstra race side-by-side — with play,
 - FastAPI WebSocket server streams JSON step frames to the browser
 - Side-by-side Canvas animations for sorting bars and pathfinding grids
 - Play, pause, and speed controls in the UI
-- Supports 4 algorithms out of the box — easily extensible
+- Supports 6 algorithms out of the box — easily extensible
 
 
 # Architecture
 
 1. C Layer
-Algorithms: bubble_sort, merge_sort, a_star, dijkstra. Each one emits step callbacks as it runs.
+Algorithms: bubble_sort, merge_sort, quick_sort, insertion_sort, a_star, dijkstra. Each one emits step callbacks as it runs.
 ↓ (ctypes / subprocess pipe)
 
 3. Python Backend
@@ -31,7 +31,10 @@ WebSocket client receives frames → Canvas renderer animates them → Play / Pa
 ```
 algoscope/
 ├── c/
-│   ├── sort.c          # Bubble sort, merge sort
+│   ├── bubble_sort.c    # Bubble sort
+│   ├── merge_sort.c     # Merge sort
+│   ├── quick_sort.c     # Quick sort
+│   ├── insertion_sort.c # Insertion sort
 │   ├── pathfind.c      # A* and Dijkstra
 │   └── Makefile        # Builds shared libraries (.so)
 ├── backend/

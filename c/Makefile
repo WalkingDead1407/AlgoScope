@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -O2 -fPIC
 SHARED = -shared
 
-TARGETS = libbubble.so libmerge.so libastar.so libdijkstra.so
+TARGETS = libbubble.so libmerge.so libquick.so libinsertion.so libastar.so libdijkstra.so
 
 all: $(TARGETS)
 
@@ -10,6 +10,12 @@ libbubble.so: bubble_sort.c
 	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
 
 libmerge.so: merge_sort.c
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
+
+libquick.so: quick_sort.c
+	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
+
+libinsertion.so: insertion_sort.c
 	$(CC) $(CFLAGS) $(SHARED) -o $@ $<
 
 libastar.so: astar.c heap.c
@@ -21,6 +27,6 @@ libdijkstra.so: dijkstra.c heap.c
 clean:
 	rm -f *.so *.o
 
-test_sort: test_sort.c bubble_sort.c merge_sort.c
-	$(CC) $(CFLAGS) -o test_sort test_sort.c bubble_sort.c merge_sort.c
+test_sort: test_sort.c bubble_sort.c merge_sort.c quick_sort.c insertion_sort.c
+	$(CC) $(CFLAGS) -o test_sort test_sort.c bubble_sort.c merge_sort.c quick_sort.c insertion_sort.c
 	./test_sort
