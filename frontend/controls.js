@@ -4,7 +4,7 @@
   const WS_PROTOCOL = window.location.protocol === "https:" ? "wss:" : "ws:";
   const WS_URL = `${WS_PROTOCOL}//${window.location.host}/ws`;
   const ALGOS = {
-    sort: ["bubble", "merge"],
+    sort: ["bubble", "merge", "quick", "insertion"],
     path: ["dijkstra", "astar"],
   };
 
@@ -31,6 +31,8 @@
   const ALGO_LABELS = {
     bubble: "bubble_sort()",
     merge: "merge_sort()",
+    quick: "quick_sort()",
+    insertion: "insertion_sort()",
     dijkstra: "dijkstra()",
     astar: "a_star()",
   };

@@ -37,6 +37,8 @@
   const ALGO_LABELS = {
     bubble: "bubble_sort()",
     merge: "merge_sort()",
+    quick: "quick_sort()",
+    insertion: "insertion_sort()",
     dijkstra: "dijkstra()",
     astar: "a_star()",
   };
